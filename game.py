@@ -2,9 +2,11 @@ import random
 import os
 import time
 
+#Making a function for clearing the terminal
 def clear():
     os.system('cls')
 
+#Making a function in english to print instructions for the game
 def en_udinstructions():
     print()
     print("UP-DOWN GAME INSTRUCTIONS")
@@ -15,6 +17,7 @@ def en_udinstructions():
     print("IF YOU CHOOSE THE RIGHT NUMBER THEN YOU WILL WIN THE PARTY")
     print()
 
+#making a function in french to print instructions for the game
 def fr_udinstructions():
     print()
     print("INSTRUCTION DU JEU HAUT-BAS")
@@ -25,8 +28,10 @@ def fr_udinstructions():
     print("SI TU CHOISI LE BON NOMBRE ALORS TU VAS GAGNER LA PARTIE")
     print()
 
+#making a function in english for the easy level
 def UDEASY_EN():
-    pc = random.randint(1,100)
+    
+    pc = random.randint(1,100) #we initialize the random number
     
     while True:
         print("--------------------------------------")
@@ -37,35 +42,36 @@ def UDEASY_EN():
         print("Enter \"exit\" to quit")
         print("--------------------------------------")
         
-        player = input("Enter your move : ")
+        player = input("Enter your move : ")# asking the user to make a move
         
-        if player.lower() == 'help':
+        if player.lower() == 'help': #if the user entered help we show him the instructions of the game
             clear()
             en_udinstructions()
             continue
-        elif player.lower() == 'exit':
+        elif player.lower() == 'exit': #if it's exit we exit the game by breaking the code
             clear()
             break
-        elif int(player) < pc :
+        elif int(player) < pc : #if it's lower we say up
             print("UP")
             time.sleep(1)
             clear()
             continue
-        elif int(player) > pc :
+        elif int(player) > pc : #if it's higher we say down
             print("DOWN")
             time.sleep(1)
             clear()
             continue
-        elif int(player) == pc :
+        elif int(player) == pc : #if the number is found we end the game by breaking the code
             print(f"{name_en} FOUND THE NUMBER, CONGRATS!")
             time.sleep(2)
             clear()
             break
         else:
-            print("WRONG INPUT")
+            print("WRONG INPUT") #if the input is not none of proposed then we ask again
             en_udinstructions()
             continue
-        
+   
+#making a function in french for the easy level
 def UDEASY_FR():
     pc = random.randint(1,100)
     
@@ -107,6 +113,7 @@ def UDEASY_FR():
             fr_udinstructions()
             continue
 
+#making a function in english for the normal level
 def UDNORMAL_EN():
     global name
     pc = random.randint(1,1000)
@@ -148,7 +155,8 @@ def UDNORMAL_EN():
             print("WRONG INPUT")
             en_udinstructions()
             continue           
-    
+  
+#making a function in french for the normal level  
 def UDNORMAL_FR():
     pc = random.randint(1,1000)
     
@@ -190,6 +198,7 @@ def UDNORMAL_FR():
             fr_udinstructions()
             continue  
     
+#making a function in english for the hard level
 def UDHARD_EN():
     pc = random.randint(1,10000)
     
@@ -231,6 +240,7 @@ def UDHARD_EN():
             en_udinstructions()
             continue
 
+#making a function in french for the hard level
 def UDHARD_FR():
     pc = random.randint(1,10000)
     
@@ -272,16 +282,17 @@ def UDHARD_FR():
             fr_udinstructions()
             continue   
        
-    
+#making sure that the code is running in this file
 if __name__ == '__main__':
     
+    #Asking the user to choose the language of the game
     print("1 POUR FRANCAIS")
     print("2 FOR ENGLISH")
     
     inp = int(input("1/2 : "))
     
     if inp == 1 :
-        name_fr = input("Entre ton nom : ")
+        name_fr = input("Entre ton nom : ")#Asking user to enter his name
         while True:
             
             print()
@@ -294,28 +305,30 @@ if __name__ == '__main__':
             print()
             
             try:
-                choice = int(input("Entre ton choix : "))
-            except ValueError:
+                choice = int(input("Entre ton choix : ")) #Asking the user to choose in which level does he want to play
+            
+            except ValueError: #if it's a valueError
                 clear()
-                print("Mauvais choix")
-                continue
+                print("Mauvais choix. Lis les instructions.") #You'll tell to the player it's a wrong choice
+                continue #and making sure the code to not brak 
             
             if choice == 1:
-                UDEASY_FR()
+                UDEASY_FR() #initialize the level easy
                 
             elif choice == 2:
-                UDNORMAL_FR()
+                UDNORMAL_FR() #initialize the level normal
             
             elif choice == 3:
-                UDHARD_FR()
+                UDHARD_FR() #initialize the level hard
             
-            elif choice == 4:
+            elif choice == 4: #quitting the game
                 break
             
-            else:
+            else: #if the number entered is not between 1 and 4
                 clear()
                 print("Mauvais Choix. Lis les instructions.")
-                
+          
+    #the same for the english version      
     elif inp == 2 :
         name_en = input("Enter your name : ")
         while True:
